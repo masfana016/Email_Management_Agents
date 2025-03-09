@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash", 
+    model="gemini-2.0-flash", 
     google_api_key=os.getenv("GOOGLE_API_KEY")
 )
 
@@ -282,8 +282,8 @@ builder.add_conditional_edges(
     tools_condition,
 )
 builder.add_edge("tools", "assistant")
-# memory: MemorySaver = MemorySaver()
-react_graph_memory: CompiledStateGraph = builder.compile(checkpointer=checkpointer)
+memory: MemorySaver = MemorySaver()
+react_graph_memory: CompiledStateGraph = builder.compile(checkpointer=memory)
 
 class UserInput(BaseModel):
     input_text: str 
